@@ -1,5 +1,5 @@
-const { User } = require('../models/user');
-const { handleError } = require('../utils/handleError');
+const { User } = require("../models/user");
+const { handleError } = require("../utils/handleError");
 
 async function getAllUsers(req, res) {
   try {
@@ -10,4 +10,6 @@ async function getAllUsers(req, res) {
   }
 }
 
-module.exports = { getAllUsers };
+module.exports = {
+  getAllUsers,
+};

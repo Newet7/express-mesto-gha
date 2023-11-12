@@ -1,5 +1,5 @@
-const { Card } = require('../models/card');
-const { handleError } = require('../utils/handleError');
+const { Card } = require("../models/card");
+const { handleError } = require("../utils/handleError");
 
 async function getAllCards(req, res) {
   try {
@@ -10,4 +10,6 @@ async function getAllCards(req, res) {
   }
 }
 
-module.exports = { getAllCards };
+module.exports = {
+  getAllCards,
+};

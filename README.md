@@ -12,7 +12,7 @@
 
 ## Ссылка на репозиторий
 
-https://github.com/Newet7/express-mesto-gha
+https://github.com/Polinica/express-mesto-gha
 
 ### Чеклист
 

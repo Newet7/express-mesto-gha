@@ -1,9 +1,19 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const {
+  errors,
+} = require('celebrate')
 const helmet = require('helmet')
 const {
   routes,
 } = require('./routes')
+const {
+  handleError,
+} = require('./middlewares/handleError')
+
+const {
+  requestLogger, errorLogger,
+} = require('./middlewares/logger')
 
 const {
   PORT = 3000, DATABASE_URL = 'mongodb://127.0.0.1:27017/mestodb',
@@ -23,18 +33,17 @@ mongoose.connect(DATABASE_URL)
     console.error(err)
   })
 
-// временное решение авторизации пользователя
-app.use((req, res, next) => {
-  req.user = {
-    _id: '64c556019c7f3a4a7dba23ab',
-  }
-
-  next()
-})
+app.use(requestLogger) // подключаем логгер запросов
 
 // подключаем роуты и всё остальное...
 app.use(express.json())
 app.use(routes)
+
+app.use(errorLogger) // подключаем логгер ошибок
+
+app.use(errors()) // обработчик ошибок celebrate
+
+app.use(handleError)
 
 app.listen(PORT, () => {
   console.log(`is running on port ${PORT}`)
